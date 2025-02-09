@@ -1,0 +1,41 @@
+@baseUrl = http://127.0.0.1:5000/
+
+GET {{baseUrl}}/adv/
+Content-Type: application/json
+
+###
+GET {{baseUrl}}/adv/1
+Content-Type: application/json
+
+###
+
+POST {{baseUrl}}/adv/
+Content-Type: application/json
+token: 1
+
+{
+  "header": "Табуретка",
+  "description": "супер топ"
+}
+
+###
+DELETE {{baseUrl}}/adv/1
+
+###
+PATCH  {{baseUrl}}/adv/2
+Content-Type: application/json
+
+{
+    "header": "Стол"
+}
+
+
+###
+GET {{baseUrl}}/user/
+Content-Type: application/json
+
+###
+
+POST {{baseUrl}}/user/
+username: new_admin
+token: 2
