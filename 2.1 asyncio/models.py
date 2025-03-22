@@ -16,7 +16,7 @@ PG_DSN = (f'postgresql+asyncpg://'
           )
 
 engine = create_async_engine(PG_DSN)
-Session = async_sessionmaker(bind = engine, expire_on_commit=False)
+db_session = async_sessionmaker(bind = engine, expire_on_commit=False)
 
 
 class Base(DeclarativeBase, AsyncAttrs):
@@ -27,3 +27,10 @@ class SwapiPeople(Base):
     __tablename__ = 'swapi_people'
     id: Mapped[int] = mapped_column(Integer, primary_key=True)
     json_data: Mapped[dict] = mapped_column(JSON)
+
+async def init_orm():
+    async with engine.begin() as conn:
+        await conn.run_sync(Base.metadata.create_all)
+
+async def close_orm():
+    await engine.dispose()
