@@ -1,4 +1,4 @@
-@baseUrl = http://127.0.0.1:5000/
+@baseUrl = http://127.0.0.1:5000
 
 GET {{baseUrl}}/adv/
 Content-Type: application/json
@@ -37,5 +37,9 @@ Content-Type: application/json
 ###
 
 POST {{baseUrl}}/user/
-username: new_admin
-token: 2
+Content-Type: application/json
+
+{
+    "username": "admin",
+    "token": "1"
+}
